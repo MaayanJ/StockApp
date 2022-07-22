@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  postgres-db:
+    container_name: postgres
+    image: "postgres"
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+      POSTGRES_DB: stock
+    ports:
+      - "5432:5432"
+
+  minio:
+    container_name: pmcs-minio
+    image: bitnami/minio:latest
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - "/data"
